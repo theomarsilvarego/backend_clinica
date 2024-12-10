@@ -1,0 +1,272 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Pacientes",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/pacientes": {
+            "get": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Listar todos os pacientes",
+                "operationId": "9cf5506c2b465d4386c71237b6d290d1",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pacientes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Paciente"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Criar um novo paciente",
+                "operationId": "ffd18f87de3d0cd123142caba8dfbaf1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Paciente"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Paciente criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "/api/pacientes/{id}": {
+            "get": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Retornar um paciente específico",
+                "operationId": "5f02391eeb0b98da72b90c3fb919d962",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do paciente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paciente encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Paciente não encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Atualizar um paciente",
+                "operationId": "b31f9d647e5bfced24862d43f680ce37",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do paciente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Paciente"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Paciente atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Paciente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Deletar um paciente",
+                "operationId": "4e290c67a4e644a34cea05f2dcdb4df1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do paciente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Paciente deletado com sucesso"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Paciente": {
+                "required": [
+                    "nome",
+                    "cpf",
+                    "sexo",
+                    "data_nascimento",
+                    "cep",
+                    "municipio",
+                    "estado",
+                    "bairro",
+                    "logradouro",
+                    "numero",
+                    "email",
+                    "telefone",
+                    "celular"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID do paciente",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nome": {
+                        "description": "Nome do paciente",
+                        "type": "string",
+                        "example": "João da Silva"
+                    },
+                    "cpf": {
+                        "description": "CPF do paciente",
+                        "type": "string",
+                        "example": "123.456.789-00"
+                    },
+                    "sexo": {
+                        "description": "Sexo do paciente",
+                        "type": "string",
+                        "example": "M"
+                    },
+                    "data_nascimento": {
+                        "description": "Data de nascimento",
+                        "type": "string",
+                        "format": "date",
+                        "example": "1980-10-10"
+                    },
+                    "cep": {
+                        "description": "CEP do paciente",
+                        "type": "string",
+                        "example": "12345-678"
+                    },
+                    "municipio": {
+                        "description": "Cidade do paciente",
+                        "type": "string",
+                        "example": "Porto Velho"
+                    },
+                    "estado": {
+                        "description": "Estado do paciente",
+                        "type": "string",
+                        "example": "RO"
+                    },
+                    "bairro": {
+                        "description": "Bairro do paciente",
+                        "type": "string",
+                        "example": "Centro"
+                    },
+                    "logradouro": {
+                        "description": "Logradouro do paciente",
+                        "type": "string",
+                        "example": "Rua A"
+                    },
+                    "numero": {
+                        "description": "Número da casa",
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "complemento": {
+                        "description": "Complemento",
+                        "type": "string",
+                        "example": "Apto 10"
+                    },
+                    "email": {
+                        "description": "Email do paciente",
+                        "type": "string",
+                        "example": "joao@exemplo.com"
+                    },
+                    "telefone": {
+                        "description": "Telefone fixo",
+                        "type": "string",
+                        "example": "(69) 1234-5678"
+                    },
+                    "celular": {
+                        "description": "Número de celular",
+                        "type": "string",
+                        "example": "(69) 98765-4321"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Paciente",
+            "description": "Paciente"
+        }
+    ]
+}
